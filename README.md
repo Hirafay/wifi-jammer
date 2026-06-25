@@ -1,37 +1,35 @@
-WiFi-Jammer-Automation
-A lightweight Bash utility designed to automate the process of transitioning wireless network interfaces into monitor mode and simplifying the workflow of 802.11 deauthentication attacks using the aircrack-ng suite.
 
-Overview
-Managing wireless interfaces, killing conflicting network daemons, and setting channels manually can be a repetitive, error-prone process. This script automates the full lifecycle of the process:
+ */
 
-Interface Detection: Dynamically identifies active wireless interfaces.
+# WiFi-Jammer-Automation
 
-Process Management: Automatically identifies and kills conflicting services (like iwd or wpa_supplicant) that interfere with monitor mode.
+A lightweight Bash utility designed to automate the lifecycle of transitioning wireless network interfaces into monitor mode, streamlining the workflow of 802.11 deauthentication testing using the `aircrack-ng` suite.
 
-Monitor Mode Activation: Seamlessly transitions the device into monitor mode.
+## Overview
+Managing wireless interfaces, suppressing conflicting network daemons, and manually configuring channel hopping is often a repetitive and error-prone process. This script provides a centralized management layer to handle the lifecycle of wireless network operations:
 
-Automation: Streamlines the scanning-to-attack pipeline by capturing user inputs for target BSSID and channel.
+* Interface Detection: Dynamically identifies active wireless interfaces.
+* Daemon Management: Programmatically suppresses conflicting background services (e.g., iwd, wpa_supplicant).
+* Monitor Mode Orchestration: Executes the necessary kernel-level commands to transition hardware into monitor mode safely.
+* Attack Streamlining: Simplifies the transition from reconnaissance to targeted deauthentication.
+* Graceful Termination: Implements a trap mechanism to ensure the interface is returned to managed mode and network services are restored automatically.
 
-Cleanup: Includes a trap mechanism to restore the interface to managed mode and restart network services upon exit.
+## Features
+* Auto-Detection: Automatically selects the primary wireless interface.
+* Robust Error Handling: Mitigates common hardware-level race conditions.
+* System Integrity: Ensures system network services are restored immediately upon process termination.
 
-Features
-Auto-Detection: Automatically selects the primary wireless interface.
+## Prerequisites
+* Dependency: `aircrack-ng` suite installed on the host system.
+* Hardware: Wireless network interface card (NIC) supporting Monitor Mode and Packet Injection.
 
-Error Handling: Robust interface management to prevent No such device or Resource busy errors.
+## Usage
+1. Clone the repository:
+   git clone https://github.com/yourusername/wifi-jammer.git
+   cd wifi-jammer
 
-Clean Exit: Automatic cleanup ensures your system network services are restored immediately after the process ends.
+2. Assign execution permissions:
+   chmod +x jammer.sh
 
-Usage
-Clone the repository:
-git clone [https://github.com/yourusername/wifi-jammer.git](https://github.com/yourusername/wifi-jammer.git)
-
-Make the script executable:
-chmod +x jammer.sh
-
-Run with root privileges:
-sudo ./jammer.sh
-
-Prerequisites
-aircrack-ng suite installed on your system.
-
-Wireless card capable of Monitor Mode and Packet Injection.
+3. Execute with root privileges:
+   sudo ./jammer.sh
