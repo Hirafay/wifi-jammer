@@ -25,7 +25,7 @@ Managing wireless interfaces, suppressing conflicting network daemons, and manua
 
 ## Usage
 1. Clone the repository:
-   git clone https://github.com/yourusername/wifi-jammer.git
+   git clone https://github.com/Hirafay/wifi-jammer.git
    cd wifi-jammer
 
 2. Assign execution permissions:
